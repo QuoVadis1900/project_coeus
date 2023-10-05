@@ -1,0 +1,6 @@
+
+Text file:
+"The relevant information about the question "How old is Peter?" is in line 1, which states: "(ln:1) Anna is 5 years older than Peter." This indicates that Anna's age is known to be 5 years older than Peter's age, but it doesn't provide the exact age of Peter."
+"
+Reformat the text file in the following list format:
+[[line number, information1], [line number, information2]...]. Do not comment in any way. Strictly response with the list.

@@ -1,0 +1,11 @@
+version: '3'
+services:
+  calculator:
+    build: .
+    image: calculator-app
+    container_name: calculator-container
+    volumes:
+      - ./web:/web
+    ports:
+      - "8080:80"
+    command: ["python", "-m", "http.server", "80"]
