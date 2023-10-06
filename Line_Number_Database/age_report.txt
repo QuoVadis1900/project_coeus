@@ -1,0 +1,3 @@
+(ln: 1) Anna is 5 years older then Peter.
+(ln: 2) Frank is 19.
+(ln: 3) Anna is 29.

@@ -1,0 +1,76 @@
+import os
+from llm_inter import *
+from utils import extract_list_of_lists, save_text, read_text_file, append_or_create_json_file
+import json 
+
+FINDINGS_PATH = "./findings/findings"
+FINAL_PATH = "./findings/final.txt"
+PROMPT_PATH = "./prompts/current_prompt"
+RESPONSE_PATH = "./response/current_response"
+
+
+def iterate_database(directory_path, question):
+    """
+    Args:
+    directory_path (str): The path to the directory.
+
+    Returns:
+    None
+    """
+    # Check if the directory path exists
+    if not os.path.exists(directory_path) or not os.path.isdir(directory_path):
+        print(f"Directory '{directory_path}' does not exist.")
+        return
+    
+    if os.path.exists(FINDINGS_PATH):
+        os.remove(FINDINGS_PATH)
+    # List all files in the directory
+    file_list = os.listdir(directory_path)
+
+    # Iterate through files and print their content
+    for file_name in file_list:
+        file_path = os.path.join(directory_path, file_name)
+
+        # Check if it's a file (not a directory)
+        if os.path.isfile(file_path):
+            with open(file_path, 'r') as file:
+                content = file.read()
+            analyze_file(content=content, question=question, text_name=file_name)
+    summarize_findings(question=question)
+
+
+def analyze_file(content, question, text_name):
+    prompt = make_question_prompt(text=content, question=question)
+    save_text(text=prompt, path=PROMPT_PATH)
+    input(f"Press Enter after you pasted the response into {RESPONSE_PATH}...")
+
+    response = read_text_file(file_path=RESPONSE_PATH)
+    prompt = make_question_parsing_prompt(response)
+    save_text(text=prompt, path=PROMPT_PATH)
+    input(f"Press Enter after you pasted the response into {RESPONSE_PATH}...")
+
+    response = read_text_file(file_path=RESPONSE_PATH)
+    string_list = extract_list_of_lists(response)
+    results = {text_name:string_list}
+    append_or_create_json_file(file_path=FINDINGS_PATH, data_dict=results)
+
+def summarize_findings(question):
+    summary = read_text_file(file_path=FINDINGS_PATH)
+    prompt = make_summary_prompt(text=summary, question=question)
+    save_text(text=prompt, path=PROMPT_PATH)
+    input(f"Press Enter after you pasted the response into {RESPONSE_PATH}, summary")
+    response = read_text_file(file_path=RESPONSE_PATH)
+
+    prompt = make_summary_parsing_prompt(response, question=question)
+    save_text(text=prompt, path=PROMPT_PATH)
+    input(f"Press Enter after you pasted the response into {RESPONSE_PATH}, parse summary")
+
+    response = read_text_file(file_path=RESPONSE_PATH)
+    save_text(text=response, path=FINAL_PATH)
+
+
+if __name__ == "__main__":
+    database_directory = "./Line_Number_Database"
+    question = "How old is Peter?"
+
+    iterate_database(directory_path=database_directory, question=question)

@@ -2,14 +2,14 @@ from my_parser import extract_list_of_lists
 
 def make_question_prompt(text, question):
     prompt = f"""
-Given the following text with line numbers:
+Given the following text with line specifications:
 "
 {text}
 ".
 Return all important information about the question 
 "
 {question}
-", including line numbers. Only answer with the relevant information, be as concise and short as possible, without loosing relevant information. You don't have to answer the question, only find relevant information.
+", including line specifications. Only answer with the relevant information, be as concise and short as possible, without loosing relevant information. You don't have to answer the question, only find relevant information.
 """
     return prompt
 
@@ -19,7 +19,7 @@ Text file:
 "{summary}"
 "
 Reformat the text file in the following list format:
-[[line number, information1], [line number, information2]...]. Do not comment in any way. Strictly response with the list.
+[[line specification, information1], [line specification, information2]...]. Do not comment in any way. Strictly response with the list.
 """
     return parser_command
 

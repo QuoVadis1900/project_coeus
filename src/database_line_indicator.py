@@ -1,6 +1,6 @@
 import os
 
-# Function to add line numbers to each line in a file
+# Function to add line specifications to each line in a file
 def add_line_numbers(input_file, output_file):
     with open(input_file, 'r') as infile, open(output_file, 'w') as outfile:
         for line_number, line in enumerate(infile, start=1):

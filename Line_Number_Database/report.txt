@@ -1,0 +1,2 @@
+(ln: 1) In july, the wether was ok.
+(ln: 2) In june, the wether was not ok.

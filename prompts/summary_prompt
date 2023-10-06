@@ -1,9 +1,0 @@
-
-Given the following text with line numbers:
-"
-(ln: 1) Anna is 5 years older then Peter.
-".
-Return all important information about the question 
-"
-How old is Peter?
-", including line numbers. Only answer with the relevant information, be as concise and short as possible, without loosing relevant information. You don't have to answer the question, only find relevant information.

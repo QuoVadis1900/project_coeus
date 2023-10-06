@@ -1,0 +1,27 @@
+
+Summarize the following text with respect to the question How old is Peter?: 
+Based on the provided findings from different documents, here is the summary of relevant information to answer the question "How old is Peter?":
+
+1. From the "age_report.txt" document:
+   - Line 1: "Anna is 5 years older than Peter."
+
+2. From the same "age_report.txt" document:
+   - Line 3: "Anna is 29."
+
+Based on this information, we can calculate Peter's age:
+Let's denote Peter's age as "P" and Anna's age as "A."
+
+From Line 1, we know that:
+A = P + 5
+
+From Line 3, we know that Anna's age (A) is 29:
+A = 29
+
+Now, we can substitute the value of A from Line 3 into the equation from Line 1:
+29 = P + 5
+
+Solving for P:
+P = 29 - 5
+P = 24
+
+So, based on the provided information, Peter is 24 years old.
